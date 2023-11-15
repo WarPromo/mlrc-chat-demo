@@ -49,6 +49,8 @@ function scrollbottom(){
 
 }
 
+fetch(server + "/resetchat")
+
 
 function sendmessageserver(bot, content){
 

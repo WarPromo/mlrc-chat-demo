@@ -60,6 +60,16 @@ def process_message():
 
       })
 
+@api.route('/resetchat', methods=['GET'])
+@cross_origin()
+def reset_chat():
+    global regular_conversation;
+    global gpt_conversation;
+    print("reset the chat");
+    regular_conversation = "";
+    gpt_conversation = "";
+
+    return json.dumps({"res": "success"})
 
 
 def process_gpt(message):
