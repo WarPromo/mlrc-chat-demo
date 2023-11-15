@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src = "script.js"></script>
+</head>
+
+<body onload="init()">
+
+  <img id="background" src="background.jpg"></img>
+  <div id="chatboxcontainer">
+    <div id="chatbox">
+
+      <div id="dropdown">
+
+        <p class="dropdownsquare" id="dropdownhover" onclick="hovermenu(true)">Math Bot</p>
+
+        <div id="dropdownmenu" style="display: none">
+          <p class="dropdownsquare" id="equationsolver" onclick="changechat(this)">Math Bot</p>
+          <p class="dropdownsquare" id="chatgpt" onclick="changechat(this)">Superhero Bot</p>
+          <p class="dropdownsquare" id="huggingface" onclick="changechat(this)">Conversation Bot</p>
+        </div>
+
+      </div>
+
+      <div id="messages">
+        <div style="height: 70px;"></div>
+      </div>
+
+      <div id="inputfield">
+        <input id="messageinput" onkeydown="sendinput(event)" placeholder="Type here..."></input>
+        <button id="sendmessage" onclick="sendinput(event, true)">
+
+          <img src="arrow.png" style="width:50px; position: relative; right:6px; bottom:1px;"></img>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
