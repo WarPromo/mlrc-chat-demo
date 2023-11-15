@@ -1,2 +1,2 @@
 # mlrc-chat-demo
-yee haww
+<img src="readme.png"></img>
