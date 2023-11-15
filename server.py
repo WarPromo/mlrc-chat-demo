@@ -5,9 +5,11 @@ from flask_cors import CORS, cross_origin
 
 import openai;
 openai.api_key = ""
-gpt_conversation = "You are Superman, act like it. Start your first message with 'I am superman!' or something cliche like that.";
+gpt_original = "You are Superman, act like it. Start your first message with 'I am superman!' or something cliche like that."
+gpt_conversation = gpt_original;
 
-regular_conversation = "Talk casually with the user."
+regular_original = "Talk casually with the user."
+regular_conversation = regular_original
 
 messages = [[],[],[]]
 message_names = ["Equation Solver", "ChatGPT", "HuggingFace"];
@@ -63,11 +65,13 @@ def process_message():
 @api.route('/resetchat', methods=['GET'])
 @cross_origin()
 def reset_chat():
+    global regular_original;
     global regular_conversation;
+    global gpt_original;
     global gpt_conversation;
     print("reset the chat");
-    regular_conversation = "";
-    gpt_conversation = "";
+    regular_conversation = regular_original;
+    gpt_conversation = gpt_original;
 
     return json.dumps({"res": "success"})
 
@@ -107,15 +111,18 @@ def process_regular(message):
     return reply;
 
 def process_equationsolver(message):
-
-    answer = number_compute(message);
+    answer = "";
+    try:
+        answer = number_compute(message);
+    except:
+        return "I don't know"
 
     if answer == None:
         return "I don't know"
 
     if type(answer) is bool:
 
-        if bool == True:
+        if answer == True:
             return "The statement is true."
         else:
             return "The statement is false."
@@ -148,7 +155,7 @@ def number_compute(question):
 
     if "=" in input:
         parts = input.split("=")
-        return int(parts[1]) == simple_solve(parts[0]);
+        return int(parts[1]) == int(simple_solve(parts[0]));
     else:
         return simple_solve(input)
 
